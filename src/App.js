@@ -14,6 +14,9 @@ function App() {
       <h3>Available Countries: {countries.length}</h3>
       <div className="countries-container">
         {countries.map((country) => (
+          /* this will works also 
+          <h2>{country?.name}</h2> 
+          */
           <Country country={country}></Country>
         ))}
       </div>
