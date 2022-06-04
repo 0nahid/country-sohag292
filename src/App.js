@@ -1,26 +1,22 @@
-import React, {useState, useEffect} from 'react';
-import './App.css';
+import { useEffect, useState } from "react";
+import Country from "./Country";
 
 function App() {
-  const [countries, setCountries]= useState([]);
-  useEffect(()=>{
-    fetch('https://restcountries.com/v3.1/all')
-    .then(res => res.json())
-    .then(data=> {
-      setCountries(data);
-      console.log(data);
-      const names = data.map(conuntry => conuntry.name);
-      console.log(names)
-    })
-  }, [])
+  const [countries, setCountries] = useState([]);
+  useEffect(() => {
+    fetch("https://restcountries.com/v2/all")
+      .then((res) => res.json())
+      .then((data) => setCountries(data));
+  }, []);
+
   return (
-    <div className="App">
-      <h1>country loadded: {countries.length}</h1>
-      <ul> 
-          {
-            countries.map(conuntry => conuntry.name)
-          } 
-    </ul>   
+    <div>
+      <h3>Available Countries: {countries.length}</h3>
+      <div className="countries-container">
+        {countries.map((country) => (
+          <Country country={country}></Country>
+        ))}
+      </div>
     </div>
   );
 }
